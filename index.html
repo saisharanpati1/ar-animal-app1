@@ -5,6 +5,22 @@
 
 <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+<script>
+let scale = 0.3;
+
+function zoomIn() {
+  scale += 0.1;
+  document.querySelector("#stag")
+    .setAttribute("scale", scale + " " + scale + " " + scale);
+}
+
+function zoomOut() {
+  scale -= 0.1;
+  if(scale < 0.1) scale = 0.1;
+  document.querySelector("#stag")
+    .setAttribute("scale", scale + " " + scale + " " + scale);
+}
+</script>
 
 </head>
 
@@ -40,7 +56,12 @@ scale="1 1 1">
 </a-text>
 
 </a-scene>
+<div style="position:absolute; bottom:20px; left:20px;">
+<button onclick="zoomIn()">Zoom In</button>
+<button onclick="zoomOut()">Zoom Out</button>
+</div>
 
 </body>
 </html>
+
 
