@@ -18,7 +18,11 @@ webxr="requiredFeatures: hit-test, local-floor">
 <a-asset-item id="stagModel" src="Stag.glb"></a-asset-item>
 </a-assets>
 
-<a-camera position="0 1.6 0"></a-camera>
+<a-camera 
+position="0 1.6 0"
+look-controls="touchEnabled: true"
+wasd-controls="enabled: true">
+</a-camera>
 
 <a-entity
 gltf-model="#stagModel"
@@ -39,3 +43,4 @@ scale="1 1 1">
 
 </body>
 </html>
+
