@@ -21,6 +21,29 @@ function zoomOut() {
     .setAttribute("scale", scale + " " + scale + " " + scale);
 }
 </script>
+  <script>
+AFRAME.registerComponent('drag-rotate', {
+  init: function () {
+    let el = this.el;
+    let startX;
+
+    window.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+    });
+
+    window.addEventListener('touchmove', function (e) {
+      let deltaX = e.touches[0].clientX - startX;
+      let rotation = el.getAttribute('rotation');
+      el.setAttribute('rotation', {
+        x: rotation.x,
+        y: rotation.y + deltaX * 0.3,
+        z: rotation.z
+      });
+      startX = e.touches[0].clientX;
+    });
+  }
+});
+</script>
 
 </head>
 
@@ -44,12 +67,12 @@ wasd-controls="enabled: true">
 gltf-model="#stagModel"
 scale="0.3 0.3 0.3"
 position="0 0 -2"
-animation="property: rotation; to: 0 360 0; loop: true; dur: 8000">
+drag-rotate>
 </a-entity>
 
 <a-text
 value="STAG\nHerbivore\nHabitat: Forest"
-color="yellow"
+color="red"
 align="left"
 position="1.5 1 -2"
 scale="1 1 1">
@@ -63,5 +86,6 @@ scale="1 1 1">
 
 </body>
 </html>
+
 
 
